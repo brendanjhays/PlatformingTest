@@ -24,7 +24,7 @@ namespace PlatformerTest
         public override void Draw(GameTime gameTime)
         {
             _spriteBatch.Begin();
-            _graphicsDevice.Clear(Color.Beige);
+            _graphicsDevice.Clear(Color.Transparent);
             foreach (var e in ActiveEntities)
             {
                 Position p = _positionMapper.Get(e);

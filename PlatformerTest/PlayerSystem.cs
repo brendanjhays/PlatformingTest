@@ -100,7 +100,7 @@ namespace PlatformerTest
 
             if (player.frenzyTimer == 1)
             {
-                physics.xAcceleration *= 1/4;
+                physics.xAcceleration *= 0.25f;
             }
 
             //Smoothing x velocity

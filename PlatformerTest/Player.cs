@@ -55,7 +55,7 @@ namespace PlatformerTest
         public Player()
         {
             onGround = true;
-            maxFrenzy = 1;
+            maxFrenzy = 100;
             frenzyNeeded = maxFrenzy;
         }
     }
