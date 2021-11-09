@@ -15,6 +15,7 @@ namespace PlatformerTest
         public ColliderType Type = ColliderType.Static;
         public Vector2 Position;
         public Vector2 Size;
+        public Behavior ColliderBehavior;
     }
 
     public class BoundingBox

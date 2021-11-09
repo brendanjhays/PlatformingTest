@@ -58,7 +58,7 @@ namespace PlatformerTest
             _tiledMap = Content.Load<TiledMap>("roomtrial");
             _tiledMapRenderer = new TiledMapRenderer(GraphicsDevice, _tiledMap);
 
-            foreach (var tileLayer in _tiledMap.TileLayers)
+            /*foreach (var tileLayer in _tiledMap.TileLayers)
             {
                 for (var x = 0; x < tileLayer.Width; x++)
                 {
@@ -74,7 +74,7 @@ namespace PlatformerTest
                         }
                     }
                 }
-            }
+            } */
         }
 
         protected override void Update(GameTime gameTime)

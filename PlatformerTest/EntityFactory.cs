@@ -44,5 +44,20 @@ namespace PlatformerTest
             });
             return entity;
         }
+
+        public Entity CreateMovingTile(Vector2 position, Vector2 size, Behavior behavior)
+        {
+            var entity = _world.CreateEntity();
+            entity.Attach(new CollisionBox
+            {
+                Type = ColliderType.Dynamic,
+                Position = position,
+                Size = size,
+                ColliderBehavior = behavior
+            });
+            return entity;
+        }
+
+        //public Behavior CreateBehavior()
     }
 }
