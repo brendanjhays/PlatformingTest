@@ -44,6 +44,11 @@ namespace PlatformerTest
             _oldKeyboardState = _newKeyboardState;
             _newKeyboardState = Keyboard.GetState();
 
+            //Updating last frame flags
+            player.didJumpLastFrame = false;
+            player.didDashLastFrame = false;
+            player.didShootLastFrame = false;
+
             if (_newKeyboardState.IsKeyDown(Keys.Right))
             {
                 //Player accelerating to right
@@ -75,6 +80,7 @@ namespace PlatformerTest
                 player.dashTurnaroundTimer = 22;
                 player.storedFacing = player.facingLeft;
                 player.frenzyNeeded -= 1;
+                player.didDashLastFrame = true;
             }
 
             if (player.onGround && player.jumpTimer == 0 && _newKeyboardState.IsKeyDown(Keys.Space))
@@ -83,6 +89,7 @@ namespace PlatformerTest
                 physics.velocity.Y -= 10f;
                 player.onGround = false;
                 player.jumpTimer = 20;
+                player.didJumpLastFrame = true;
             }
 
             if (!player.onGround)

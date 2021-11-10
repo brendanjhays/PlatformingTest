@@ -15,6 +15,11 @@ namespace PlatformerTest.Systems
         private ComponentMapper<Fighter> _fighterMapper;
         private ComponentMapper<Behavior> _behaviorMapper;
 
+        public BehaviorSystem() : base(Aspect.One(typeof(Behavior)).One(typeof(Position), typeof(Physics), typeof(Fighter)))
+        {
+
+        }
+
         public override void Initialize(IComponentMapperService mapperService)
         {
             _positionMapper = mapperService.GetMapper<Position>();
@@ -24,7 +29,39 @@ namespace PlatformerTest.Systems
 
         public override void Process(GameTime gameTime, int entityId)
         {
-            //Do this later
+            foreach (var e in ActiveEntities)
+            {
+                Behavior b = _behaviorMapper.Get(e);
+                Position pos;
+                Physics phy;
+                Fighter f;
+
+                try
+                {
+                    pos = _positionMapper.Get(e);
+                    phy = _physicsmapper.Get(e);
+                    f = _fighterMapper.Get(e);
+                }
+                catch
+                {
+                    return;
+                }
+
+                foreach (Condition c in b.IndependentConditions)
+                {
+                    switch (c.Type)
+                    {
+                        case ConditionType.PlayerShoot:
+                            if (Game1.player.Get<Player>().didShootLastFrame)
+                            {
+                                foreach (Effect effect in c.Effects)
+                                {
+
+                                }
+                            }
+                    }
+                }
+            }
         }
     }
 }

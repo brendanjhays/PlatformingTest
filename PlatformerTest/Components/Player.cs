@@ -34,6 +34,11 @@ namespace PlatformerTest
         public Weapon weapon;
         public float speed;
 
+        //Behavior Tracking
+        public bool didJumpLastFrame;
+        public bool didDashLastFrame;
+        public bool didShootLastFrame;
+
         public int frenzyNeeded;
         public int maxFrenzy;
         public int frenzyTimer;

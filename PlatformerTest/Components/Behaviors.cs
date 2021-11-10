@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.Xna.Framework;
+using MonoGame.Extended.Entities;
 
 namespace PlatformerTest
 {
@@ -11,10 +12,12 @@ namespace PlatformerTest
         public List<Condition> IndependentConditions;
         public List<Condition> OrderedConditions;
         public int OrderedIndex;
+        public World World;
 
-        public Behavior(bool loop)
+        public Behavior(bool loop, World world)
         {
             Loop = loop;
+            World = world;
         }
 
         public void RegisterCondition(Condition condition)
@@ -26,6 +29,14 @@ namespace PlatformerTest
             else
             {
                 OrderedConditions.Add(condition);
+            }
+        }
+
+        public void RegisterCondition(List<Condition> conditions)
+        {
+            foreach (Condition c in conditions)
+            {
+                this.RegisterCondition(c);
             }
         }
     }

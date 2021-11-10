@@ -13,11 +13,12 @@ namespace PlatformerTest
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
-        private World _world;
+        public World _world;
         TiledMap _tiledMap;
         TiledMapRenderer _tiledMapRenderer;
         private OrthographicCamera _camera;
         private EntityFactory _entityFactory;
+        public static Entity player;
 
         public Game1()
         {
@@ -49,7 +50,7 @@ namespace PlatformerTest
             _entityFactory = new EntityFactory(_world, Content);
 
             //Creating the player entity, this is all moving into a separate entity factory class soon.
-            _entityFactory.CreatePlayer(new Vector2(150f, 150f));
+            player = _entityFactory.CreatePlayer(new Vector2(150f, 150f));
         }
 
         protected override void LoadContent()
