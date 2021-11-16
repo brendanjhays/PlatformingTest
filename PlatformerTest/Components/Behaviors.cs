@@ -53,7 +53,7 @@ namespace PlatformerTest
             Type = type;
             IndepedentCondition = ind;
         }
-
+        
         public Condition(int timer, bool ind, bool remove)
         {
             Type = ConditionType.Timer;
@@ -74,8 +74,8 @@ namespace PlatformerTest
 
     public class VelocityEffect : Effect
     {
-        bool replaceVelocity;
-        Vector2 velocityUpdate;
+        public bool replaceVelocity;
+        public Vector2 velocityUpdate;
 
         public VelocityEffect(Vector2 update, bool replace)
         {
@@ -86,8 +86,8 @@ namespace PlatformerTest
 
     public class HealthEffect : Effect
     {
-        bool replaceHealth;
-        int healthUpdate;
+        public bool replaceHealth;
+        public int healthUpdate;
 
         public HealthEffect(int update, bool replace)
         {

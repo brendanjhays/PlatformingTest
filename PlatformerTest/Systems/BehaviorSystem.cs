@@ -54,11 +54,54 @@ namespace PlatformerTest.Systems
                         case ConditionType.PlayerShoot:
                             if (Game1.player.Get<Player>().didShootLastFrame)
                             {
-                                foreach (Effect effect in c.Effects)
-                                {
-
-                                }
+                                ProcessEffects(c.Effects);
                             }
+                            return;
+
+                        case ConditionType.PlayerJump:
+                            if (Game1.player.Get<Player>().didJumpLastFrame)
+                            {
+                                ProcessEffects(c.Effects);
+                            }
+                            return;
+
+                        case ConditionType.PlayerDash:
+                            if (Game1.player.Get<Player>().didDashLastFrame)
+                            {
+                                ProcessEffects(c.Effects);
+                            }
+                            return;
+                    }
+                }
+            }
+        }
+
+        public void ProcessEffects(List<Effect> effects, Position position = null, Physics physics = null, Fighter fighter = null)
+        {
+            Type _healthEffect = typeof(HealthEffect);
+            Type _velocityEffect = typeof(VelocityEffect);
+
+            foreach (Effect effect in effects)
+            {
+                if (effect.GetType() == _healthEffect)
+                {
+                    HealthEffect e = (HealthEffect) effect;
+                    if (fighter == null) { throw new InvalidEffectException("Entity does not have valid components to process effect"); }
+                    else
+                    {
+                        if (e.replaceHealth) { fighter.hp = e.healthUpdate; }
+                        else { fighter.hp += e.healthUpdate; }
+                    }
+                }
+
+                if (effect.GetType() == _velocityEffect)
+                {
+                    VelocityEffect e = (VelocityEffect) effect;
+                    if (physics == null) { throw new InvalidEffectException("Entity does not have valid components to process effect"); }
+                    else
+                    {
+                        if (e.replaceVelocity) { physics.velocity = e.velocityUpdate; }
+                        else { physics.velocity = Vector2.Add(physics.velocity, e.velocityUpdate); }
                     }
                 }
             }
